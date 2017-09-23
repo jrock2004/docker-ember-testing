@@ -2,8 +2,8 @@ FROM node:6.11.3-stretch
 LABEL maintainer="John Costanzo"
 
 # Environment variables
-ENV EMBER_VERSION 2.12.2
-ENV APP_DIR /tmp/my-app
+ENV EMBER_VERSION latest
+ENV APP_DIR /app
 
 # Install some necessary tools
 RUN apt-get update -qqy && \
@@ -16,8 +16,9 @@ RUN apt-get update -qqy && \
   apt-get update -qqy && \
   apt-get -qqy install google-chrome-unstable && \
   ln -s /usr/bin/nodejs /usr/bin/node && \
-  npm install ember-cli@$EMBER_VERSION -g && \
-  mkdir $APP_DIR
+  npm install bower ember-cli@$EMBER_VERSION -g && \
+  mkdir $APP_DIR && \
+  rm -rf /var/lib/apt/lists/*
 
 COPY entrypoint.sh /entrypoint.sh
 WORKDIR $APP_DIR
