@@ -20,6 +20,7 @@ RUN apt-get update -qqy && \
   mkdir $APP_DIR
 
 COPY entrypoint.sh /entrypoint.sh
-COPY . $APP_DIR
+WORKDIR $APP_DIR
+VOLUME [$APP_DIR]
 
-RUN sh /entrypoint.sh
+CMD ["/entrypoint.sh"]
