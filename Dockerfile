@@ -5,6 +5,7 @@ LABEL maintainer="John Costanzo"
 ENV EMBER_VERSION 2.12.2
 ENV APP_DIR /tmp/my-app
 
+# Install some necessary tools
 RUN apt-get update -qqy && \
   apt-get -qqy install xvfb fluxbox x11vnc dbus  \
   fontconfig \
