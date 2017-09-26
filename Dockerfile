@@ -18,10 +18,7 @@ RUN apt-get update -qqy && \
   rm -rf /var/lib/apt/lists/* &&\
   ln -s /usr/bin/nodejs /usr/bin/node && \
   npm install ember-cli@$EMBER_VERSION -g && \
-  mkdir $APP_DIR && \
-  rm -rf /var/lib/apt/lists/* && \
-  rm -rf /root/.npm && \
-  apt-get remove -y curl wget
+  mkdir $APP_DIR
 
 COPY entrypoint.sh /entrypoint.sh
 WORKDIR $APP_DIR
