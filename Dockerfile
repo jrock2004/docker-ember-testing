@@ -7,7 +7,7 @@ ENV APP_DIR /app
 
 # Install some necessary tools
 RUN apt-get update -qqy && \
-  apt-get -qqy install xvfb fluxbox x11vnc dbus  \
+  apt-get -qqy --no-install-recommends install xvfb fluxbox x11vnc dbus  \
   fontconfig \
   curl \
   gnupg wget ca-certificates apt-transport-https && \
@@ -15,10 +15,13 @@ RUN apt-get update -qqy && \
   echo "deb https://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google-chrome.list && \
   apt-get update -qqy && \
   apt-get -qqy install google-chrome-unstable && \
+  rm -rf /var/lib/apt/lists/* &&\
   ln -s /usr/bin/nodejs /usr/bin/node && \
-  npm install bower ember-cli@$EMBER_VERSION -g && \
+  npm install ember-cli@$EMBER_VERSION -g && \
   mkdir $APP_DIR && \
-  rm -rf /var/lib/apt/lists/*
+  rm -rf /var/lib/apt/lists/* && \
+  rm -rf /root/.npm && \
+  apt-get remove -y curl wget
 
 COPY entrypoint.sh /entrypoint.sh
 WORKDIR $APP_DIR

@@ -8,6 +8,10 @@ echo "$dt. Starting container..."
 cd $APP_DIR
 echo "App dir: $APP_DIR"
 
+if [ -e bower.json ]; then
+  bower install --allow-root
+fi
+
 echo "Installing Node dependencies..."
 npm install & wait
 
