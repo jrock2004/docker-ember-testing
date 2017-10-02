@@ -2,8 +2,7 @@ FROM golang:1.9-stretch
 LABEL maintainer="John Costanzo"
 
 # Environment variables
-ENV EMBER_VERSION 2.10.1
-ENV APP_DIR /app
+ENV EMBER_VERSION=2.10.1 APP_DIR=/app
 
 # Install some necessary tools
 RUN apt-get update -qqy && \
@@ -20,6 +19,5 @@ RUN apt-get update -qqy && \
 
 COPY entrypoint.sh /entrypoint.sh
 WORKDIR $APP_DIR
-VOLUME [$APP_DIR]
 
 CMD ["/entrypoint.sh"]
