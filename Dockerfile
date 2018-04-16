@@ -1,4 +1,4 @@
-FROM node:6.11.3-stretch
+FROM node:8.11-stretch
 LABEL maintainer="John Costanzo"
 
 # Environment variables
